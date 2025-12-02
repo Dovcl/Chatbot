@@ -7,8 +7,8 @@
 // 3. Settings > API에서 아래 정보 복사
 
 window.supabaseConfig = {
-    url: "https://tggaejclsayayydrpbqr.supabase.co",
-    anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnZ2FlamNsc2F5YXl5ZHJwYnFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1NzM1MzcsImV4cCI6MjA4MDE0OTUzN30.qUD-TuA1h69nk1-AZrajJqg_E7LzGBuQZR-Fi3NZOLI"
+    url: "url",
+    anonKey: "anonKey"
 };
 
 // 사용 방법:
