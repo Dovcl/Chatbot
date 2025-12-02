@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엑셀/CSV 데이터 챗봇</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 엑셀/CSV 데이터 챗봇</h1>
+            <div class="upload-section">
+                <label for="dataFile" class="upload-btn">
+                    📁 파일 업로드 (엑셀/CSV)
+                </label>
+                <input type="file" id="dataFile" accept=".xlsx,.xls,.csv" style="display: none;">
+                <button id="deleteSupabaseBtn" class="delete-btn" title="Supabase 데이터 삭제">
+                    🗑️ Supabase 데이터 삭제
+                </button>
+                <span id="fileName" class="file-name"></span>
+            </div>
+        </header>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        안녕하세요! 엑셀(.xlsx, .xls) 또는 CSV(.csv) 파일을 업로드하고 데이터에 대해 질문해보세요.
+                        <br>예: "Date 2024-01-01, 조사구간명 서울에서 PH를 말해줘"
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" id="userInput" placeholder="질문을 입력하세요..." />
+                <button id="sendBtn">전송</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SheetJS for Excel parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- Supabase Config -->
+    <script src="supabase-config.js?v=2"></script>
+    
+    <!-- Supabase SDK -->
+    <script type="module" src="supabase-init.js?v=2"></script>
+    
+    <!-- Main Script -->
+    <script type="module" src="script.js?v=2"></script>
+</body>
+</html>
