@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환경 데이터 RAG 챗봇 v2</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS (지도) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 환경 데이터 RAG 챗봇</h1>
+            <p class="subtitle">수질·녹조·수문·기상 데이터 분석 및 예측</p>
+            <div class="upload-section">
+                <label for="dataFile" class="upload-btn">
+                    📁 데이터 업로드 (엑셀/CSV)
+                </label>
+                <input type="file" id="dataFile" accept=".xlsx,.xls,.csv" style="display: none;">
+                <button id="deleteSupabaseBtn" class="delete-btn" title="Supabase 데이터 삭제">
+                    🗑️ 데이터 삭제
+                </button>
+                <span id="fileName" class="file-name"></span>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- 왼쪽: 챗봇 영역 -->
+            <div class="chat-section">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            안녕하세요! 🌊 환경 데이터 분석 챗봇입니다.<br><br>
+                            <strong>사용 가능한 기능:</strong><br>
+                            • 데이터 조회 (수질, 녹조, 수문, 기상)<br>
+                            • 다음주 예측 결과 확인<br>
+                            • 시계열 변화 그래프<br>
+                            • 공간적 변화 지도<br>
+                            • 사고 대응 메뉴얼<br><br>
+                            예: "분류코드 2001G027에서의 pH값 알려줘"
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 제안 버튼 영역 (입력창 위로 이동) -->
+                <div id="suggestions-container" class="suggestions-container"></div>
+                
+                <div class="chat-input-container">
+                    <input type="text" id="userInput" placeholder="질문을 입력하세요..." />
+                    <button id="sendBtn">전송</button>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 시각화 영역 -->
+            <div class="visualization-section">
+                <div class="viz-tabs">
+                    <button class="viz-tab active" data-tab="chart">📈 시계열</button>
+                    <button class="viz-tab" data-tab="map">🗺️ 지도</button>
+                    <button class="viz-tab" data-tab="prediction">🔮 예측</button>
+                </div>
+                
+                <div class="viz-content">
+                    <div id="chart-container" class="viz-panel active">
+                        <canvas id="timeSeriesChart"></canvas>
+                    </div>
+                    <div id="map-container" class="viz-panel"></div>
+                    <div id="prediction-container" class="viz-panel">
+                        <div id="prediction-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- 설정 -->
+    <script src="config.js"></script>
+    <script src="supabase-config.js?v=3"></script>
+    
+    <!-- Supabase SDK (먼저 로드) -->
+    <script type="module" src="supabase-init.js?v=3"></script>
+    
+    <!-- API 클라이언트 -->
+    <script type="module" src="api/client.js"></script>
+    
+    <!-- 모듈 -->
+    <script type="module" src="modules/data-query.js"></script>
+    <script type="module" src="modules/proactive.js"></script>
+    <script type="module" src="modules/prediction.js"></script>
+    <script type="module" src="modules/visualization.js"></script>
+    <script type="module" src="modules/manual.js"></script>
+    <script type="module" src="modules/alert.js"></script>
+    
+    <!-- 메인 스크립트 (마지막에 로드) -->
+    <script type="module" src="script.js?v=3"></script>
+</body>
+</html>
