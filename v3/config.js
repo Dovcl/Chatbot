@@ -15,7 +15,7 @@ const CONFIG = {
         // 유료 옵션: 'openai' | 'anthropic'
         provider: 'groq', // 기본값: Groq (무료, 빠름)
         
-        apiKey: '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', // LLM API 키 (환경 변수나 별도 파일에서 로드 권장)
+        apiKey: '', // LLM API 키 (환경 변수나 별도 파일에서 로드 권장)
         model: 'llama-3.1-8b-instant', // 사용할 모델명 (provider별 기본값 참고)
         baseURL: null, // 커스텀 엔드포인트 (provider가 'ollama' 또는 'custom'일 때 사용)
         maxTokens: 2000, // 최대 토큰 수
